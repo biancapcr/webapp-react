@@ -4,7 +4,7 @@
 
 Ragionare e preparare uno schemino per ompostare la struttura del lavoro in maniera da sfruttare la riutailizzabilità dei componenti React e le loro props
 
--MILESTONE 1
+- MILESTONE 1
 
 Mettiamo su un nuovo progetto React aiutandoci con Vite
 Ripuliamo come sempre l’app da file e codice di esempio non necessari
