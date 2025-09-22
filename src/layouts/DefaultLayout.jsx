@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import Header from '/src/components/Header.jsx';
 import { Outlet } from "react-router-dom";
 
 const DefaultLayout = () => {
@@ -12,4 +12,4 @@ const DefaultLayout = () => {
   );
 };
 
-export default DefaultLayout;
+export default DefaultLayout

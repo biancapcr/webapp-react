@@ -1,5 +1,5 @@
 import DefaultLayout from "./layouts/DefaultLayout";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage.jsx";
 import DetailMovie from "./pages/DetailMovie";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
