@@ -22,7 +22,7 @@ const HomePage = () => {
   return (
     <section style={{ maxWidth: 1080, margin: "0 auto", padding: 16 }}>
       <header style={{ textAlign: "center", marginBottom: 24 }}>
-        <h1>Booflix</h1>
+        <h1>Bitflix</h1>
         <h2><span>La tua videoteca digitale</span></h2>
       </header>
 

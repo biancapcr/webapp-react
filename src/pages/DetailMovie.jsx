@@ -1,10 +1,16 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import StarRating from "../components/StarRating.jsx";
 import axios from "axios";
 
 const DetailMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const avg = useMemo(() => {
+    if (!movie?.reviews?.length) return 0;
+    const sum = movie.reviews.reduce((acc, r) => acc + (Number(r.vote) || 0), 0);
+    return Math.round((sum / movie.reviews.length) * 2) / 2;
+  }, [movie]);
 
   // funzione che recupera il film dal backend
   const fetchMovie = () => {
@@ -50,6 +56,13 @@ const DetailMovie = () => {
 
           <div style={{ flex: 1 }}>
             <h1 style={{ marginTop: 0 }}>{movie.title}</h1>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "6px 0 10px" }}>
+                  <StarRating value={avg} size="1.2rem" />
+                  <span style={{ color: "#a3acb9" }}>
+                    {avg ? `${avg}/5` : "Nessuna valutazione"}
+                    {movie.reviews?.length ? ` • ${movie.reviews.length} recensioni` : ""}
+                    </span>
+                    </div>
             <p className="meta-row">
               <span className="meta-label">Genere:</span>
               <span className="meta-value">{movie.genre}</span>
