@@ -248,3 +248,34 @@ nav a {
 .star-rating .fa-star, .star-rating .fa-star-half-stroke {
   color: #c1914f; 
 }
+
+/* bottoni di navigazione */
+
+.detail-frame .nav-btn.prev, .detail-frame .nav-btn.next {
+  position: absolute;
+  bottom: 10px;  
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5ded6;         
+  min-width: 42px;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px outset #2b0915;
+  background-color: #471023;
+  border-radius: 500px;
+  z-index: 2;
+}
+
+.detail-frame .nav-btn.prev { 
+  left: 8px; 
+}  
+.detail-frame .nav-btn.next { 
+  right: 8px; 
+}  
+
+.nav-row { 
+  display: flex; 
+  gap: 8px; 
+  flex-wrap: wrap; 
+  margin-top: 10px; 
+}

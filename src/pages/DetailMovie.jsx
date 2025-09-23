@@ -57,14 +57,16 @@ const DetailMovie = () => {
 
   return (
     <>
-      <div
+      <div 
+      className="detail-frame"
         style={{
           maxWidth: 960,
           margin: "0 auto",
           padding: 16,
         }}
       >
-        <div
+        <div 
+        className="detail-card"
           style={{
             display: "flex",
             gap: 16,
@@ -124,11 +126,32 @@ const DetailMovie = () => {
                           </div>
                           </div>
                           <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                            <button onClick={goPrevPage} disabled={!totalMovies}>← Precedente</button>
-                            <Link to="/" className="back-link">Torna alla Home</Link>
-                            <button onClick={goNextPage} disabled={!totalMovies}>Successivo →</button>
-                            </div>
-                            </div>
+                            {/* --- nav prev/text ---*/}
+                            <div className="nav-row">
+                              <button
+                              type="button"
+                              className="btn nav-btn prev"
+                              onClick={goPrevPage}
+                              disabled={!totalMovies}
+                              >
+                                 Precedente
+                                </button>
+
+                                {/* bottone home */}
+                                <Link to="/" className="back-link">
+                                Torna alla Home
+                                </Link>
+                                <button
+                                type="button"
+                                className="btn nav-btn next"
+                                onClick={goNextPage}
+                                disabled={!totalMovies}
+                                >
+                                  Successivo 
+                                  </button>
+                                  </div>
+                                  </div>
+                                  </div>
                             </>
                             );
                           };
