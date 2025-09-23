@@ -27,10 +27,10 @@ const HomePage = () => {
       </header>
 
       <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}>
-        {movies.map((movie) => {
-          const { id } = movie;
-          return <MovieCard key={id} {...movie} />;
-        })}
+      {movies.map((movie) => {
+      const { id } = movie;
+      return <MovieCard key={id} movie={movie} />;
+      })}
       </div>
     </section>
   );
