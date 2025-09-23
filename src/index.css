@@ -196,3 +196,50 @@ nav a {
   color: #050505;
   line-height: 1.5;
 }
+
+/**** NotFound ****/
+
+.center-page {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.not-found h1 { 
+  margin-bottom: .5rem; 
+}
+
+.to-home-btn { 
+  margin-top: 1rem; 
+}
+
+/* bottone */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .7rem 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid #e5ded6;
+  background: transparent;
+  color: #e5ded6;
+}
+
+.btn:hover { 
+  filter: brightness(2.05); 
+  color: #e5ded6;
+}
+
+.square-btn-to-home {
+  height: 56px;         
+  padding: 0 14px;      
+  border-radius: 14px;
+  width: auto;           
+}
+
