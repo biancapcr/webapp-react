@@ -50,43 +50,42 @@ const DetailMovie = () => {
 
           <div style={{ flex: 1 }}>
             <h1 style={{ marginTop: 0 }}>{movie.title}</h1>
-            <p>
-              <strong>Genere:</strong> {movie.genre}
-            </p>
-            <p>
-              <strong>Anno:</strong> {movie.release_year}
-            </p>
-            <p>
-              <strong>Regia:</strong> {movie.director}
-            </p>
-            <p>
-              <em>Riassunto</em>:
-              <span style={{ display: "block", marginTop: 6 }}>{movie.abstract}</span>
-            </p>
-
-            {Array.isArray(movie.reviews) && movie.reviews.length > 0 && (
-              <section style={{ marginTop: 16 }}>
-                <h3 style={{ marginBottom: 8 }}>Recensioni</h3>
-                <ul style={{ paddingLeft: 18, margin: 0 }}>
-                  {movie.reviews.map((r) => (
-                    <li key={r.id}>
-                      <strong>{r.name}</strong> ({r.vote}/5): {r.text}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-          </div>
-        </div>
-
-        <div style={{ marginTop: 16 }}>
-          <Link to="/" style={{ textDecoration: "none", padding: "8px 12px", border: "1px solid #ddd", borderRadius: 8 }}>
-            ← Torna alla Home
-          </Link>
-        </div>
-      </div>
-    </>
-  );
-};
+            <p className="meta-row">
+              <span className="meta-label">Genere:</span>
+              <span className="meta-value">{movie.genre}</span>
+              </p>
+              <p className="meta-row">
+                <span className="meta-label">Anno:</span>
+                <span className="meta-value">{movie.release_year}</span>
+                </p>
+                <p className="meta-row">
+                  <span className="meta-label">Regia:</span>
+                  <span className="meta-value">{movie.director}</span>
+                  </p>
+                  {Array.isArray(movie.reviews) && movie.reviews.length > 0 && (
+                    <section className="reviews">
+                      <h3 className="reviews-title">Recensioni</h3>
+                      <ul className="reviews-list">
+                        {movie.reviews.map((r) => (
+                          <li key={r.id} className="review-item">
+                            <div className="review-head">
+                              <span className="review-author">{r.name}</span>
+                              <span className="review-vote">({r.vote}/5)</span>
+                              </div>
+                              <p className="review-text">{r.text}</p>
+                              </li>
+                            ))}
+                            </ul>
+                            </section>
+                          )}
+                          </div>
+                          </div>
+                          <div style={{ marginTop: 16 }}>
+                            <Link to="/" className="back-link">← Torna alla Home</Link>
+                            </div>
+                            </div>
+                            </>
+                            );
+                          };
 
 export default DetailMovie;
