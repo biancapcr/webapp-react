@@ -23,7 +23,7 @@ const HomePage = () => {
     <section style={{ maxWidth: 1080, margin: "0 auto", padding: 16 }}>
       <header style={{ textAlign: "center", marginBottom: 24 }}>
         <h1>Booflix</h1>
-        <h2><span>Film per veri appassionati</span></h2>
+        <h2><span>La tua videoteca digitale</span></h2>
       </header>
 
       <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}>
