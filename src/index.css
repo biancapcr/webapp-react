@@ -243,6 +243,8 @@ nav a {
   width: auto;           
 }
 
+/* star rating */
+
 .star-rating .fa-star, .star-rating .fa-star-half-stroke {
   color: #c1914f; 
 }

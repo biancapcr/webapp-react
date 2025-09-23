@@ -1,11 +1,14 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import StarRating from "../components/StarRating.jsx";
 import axios from "axios";
 
 const DetailMovie = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
+  const [totalMovies, setTotalMovies] = useState(0);
+
   const avg = useMemo(() => {
     if (!movie?.reviews?.length) return 0;
     const sum = movie.reviews.reduce((acc, r) => acc + (Number(r.vote) || 0), 0);
@@ -20,8 +23,35 @@ const DetailMovie = () => {
       .catch((err) => console.error(err));
   };
 
-  // esegue il fetch al mount e quando cambia l'id
-  useEffect(fetchMovie, [id]);
+// esegue il fetch al mount e quando cambia l'id
+ useEffect(fetchMovie, [id]);
+// utilizzo della lunghezza della lista per sapere qual è l'ultimo id
+ useEffect(() => {
+  axios
+    .get("http://localhost:3000/movies")
+    .then((resp) => {
+      const arr = Array.isArray(resp.data) ? resp.data : [];
+      setTotalMovies(arr.length);
+    })
+    .catch(() => setTotalMovies(0)); // in caso di errore, bottoni disabilitati
+}, 
+[]);
+  // partenza dall'ID corrente, prova id+1; se supera N, torna a 1
+  const goNextPage = () => {
+    if (!totalMovies) return;
+    const currentId = parseInt(id, 10);
+    let nextId = currentId + 1;
+    if (nextId > totalMovies) nextId = 1;
+    navigate(`/movies/${nextId}`);
+  };
+  // parte dall'ID corrente, prova id-1; se scende sotto 1, va a N
+  const goPrevPage = () => {
+    if (!totalMovies) return;
+    const currentId = parseInt(id, 10);
+    let prevId = currentId - 1;
+    if (prevId < 1) prevId = totalMovies;
+    navigate(`/movies/${prevId}`);
+  };
 
   if (!movie) return <p>Loading…</p>;
 
@@ -93,8 +123,10 @@ const DetailMovie = () => {
                           )}
                           </div>
                           </div>
-                          <div style={{ marginTop: 16 }}>
-                            <Link to="/" className="back-link">← Torna alla Home</Link>
+                          <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                            <button onClick={goPrevPage} disabled={!totalMovies}>← Precedente</button>
+                            <Link to="/" className="back-link">Torna alla Home</Link>
+                            <button onClick={goNextPage} disabled={!totalMovies}>Successivo →</button>
                             </div>
                             </div>
                             </>
