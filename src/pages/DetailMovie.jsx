@@ -134,7 +134,7 @@ const DetailMovie = () => {
                               onClick={goPrevPage}
                               disabled={!totalMovies}
                               >
-                                 Precedente
+                                 ← Precedente
                                 </button>
 
                                 {/* bottone home */}
@@ -147,7 +147,7 @@ const DetailMovie = () => {
                                 onClick={goNextPage}
                                 disabled={!totalMovies}
                                 >
-                                  Successivo 
+                                  Successivo 	→
                                   </button>
                                   </div>
                                   </div>
