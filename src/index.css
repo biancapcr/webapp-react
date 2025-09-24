@@ -78,6 +78,8 @@ em {
 .a{
   color: #edebde;
   text-decoration: none;
+  font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: .2px;
   padding: 8px 10px;
@@ -310,4 +312,3 @@ em {
 .to-home-btn { 
   margin-top: 1rem; 
 }
-

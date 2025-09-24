@@ -8,7 +8,7 @@ function Header() {
         src="/public/img/film.gif"        
         alt="Logo"
       />
-      <NavLink to="/" className="a">Home</NavLink>
+      <NavLink to="/" className="a">Bitflix</NavLink>
     </nav>
   );
 }

@@ -11,8 +11,9 @@ const NotFound = () => (
         className="btn square-btn-to-home"
         aria-label="Torna alla Home"
         title="Torna alla Home"
+        style={{ color: "#e5ded6"}}
       >
-        <i className="fa-solid fa-house" aria-hidden="true"></i>
+        <i className="fa-solid fa-house" aria-hidden="true" style={{ color: "#e5ded6"}}></i>
         <span>Torna alla Home</span>
       </Link>
     </div>
