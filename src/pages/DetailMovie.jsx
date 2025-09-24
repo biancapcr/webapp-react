@@ -81,7 +81,7 @@ const DetailMovie = () => {
               <img
                 src={movie.image}
                 alt={movie.title}
-                style={{ width: 260, height: "auto", display: "block", borderRadius: 8 }}
+                style={{ width: 240, height: "auto", display: "block", borderRadius: 8 }}
               />
             )}
           </div>
@@ -134,12 +134,12 @@ const DetailMovie = () => {
                               onClick={goPrevPage}
                               disabled={!totalMovies}
                               >
-                                 ← Precedente
+                                 Precedente
                                 </button>
 
                                 {/* bottone home */}
                                 <Link to="/" className="back-link">
-                                Torna alla Home
+                                ← Torna alla Home
                                 </Link>
                                 <button
                                 type="button"
@@ -147,7 +147,7 @@ const DetailMovie = () => {
                                 onClick={goNextPage}
                                 disabled={!totalMovies}
                                 >
-                                  Successivo 	→
+                                  Successivo
                                   </button>
                                   </div>
                                   </div>
