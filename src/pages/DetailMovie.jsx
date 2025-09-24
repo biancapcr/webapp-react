@@ -9,6 +9,7 @@ const DetailMovie = () => {
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [totalMovies, setTotalMovies] = useState(0);
+  const [showForm, setShowForm] = useState(false);
 
   const avg = useMemo(() => {
     if (!movie?.reviews?.length) return 0;
@@ -58,112 +59,134 @@ const DetailMovie = () => {
 
   if (!movie) return <p>Loading…</p>;
 
-  return (
-    <>
+return (
+  <>
+    <div
+      className="detail-frame"
+      style={{
+        maxWidth: 960,
+        margin: "0 auto",
+        padding: 16,
+      }}
+    >
       <div
-        className="detail-frame"
+        className="detail-card"
         style={{
-          maxWidth: 960,
-          margin: "0 auto",
+          display: "flex",
+          gap: 16,
+          alignItems: "flex-start",
+          border: "1px solid #eee",
+          borderRadius: 12,
           padding: 16,
         }}
       >
-        <div
-          className="detail-card"
-          style={{
-            display: "flex",
-            gap: 16,
-            alignItems: "flex-start",
-            border: "1px solid #eee",
-            borderRadius: 12,
-            padding: 16,
-          }}
-        >
-          <div style={{ flexShrink: 0 }}>
-            {movie.image && (
-              <img
-                src={movie.image}
-                alt={movie.title}
-                style={{ width: 240, height: "auto", display: "block", borderRadius: 8 }}
-              />
-            )}
+        <div style={{ flexShrink: 0 }}>
+          {movie.image && (
+            <img
+              src={movie.image}
+              alt={movie.title}
+              style={{ width: 240, height: "auto", display: "block", borderRadius: 8 }}
+            />
+          )}
+        </div>
+
+        <div style={{ flex: 1 }}>
+          <h1 style={{ marginTop: 0 }}>{movie.title}</h1>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "6px 0 10px" }}>
+            <StarRating value={avg} size="1.2rem" />
+            <span style={{ color: "#a3acb9" }}>
+              {avg ? `${avg}/5` : "Nessuna valutazione"}
+              {movie.reviews?.length ? ` • ${movie.reviews.length} recensioni` : ""}
+            </span>
           </div>
 
-          <div style={{ flex: 1 }}>
-            <h1 style={{ marginTop: 0 }}>{movie.title}</h1>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "6px 0 10px" }}>
-              <StarRating value={avg} size="1.2rem" />
-              <span style={{ color: "#a3acb9" }}>
-                {avg ? `${avg}/5` : "Nessuna valutazione"}
-                {movie.reviews?.length ? ` • ${movie.reviews.length} recensioni` : ""}
-              </span>
-            </div>
+          <p className="meta-row">
+            <span className="meta-label">Genere:</span>
+            <span className="meta-value">{movie.genre}</span>
+          </p>
+          <p className="meta-row">
+            <span className="meta-label">Anno:</span>
+            <span className="meta-value">{movie.release_year}</span>
+          </p>
+          <p className="meta-row">
+            <span className="meta-label">Regia:</span>
+            <span className="meta-value">{movie.director}</span>
+          </p>
 
-            <p className="meta-row">
-              <span className="meta-label">Genere:</span>
-              <span className="meta-value">{movie.genre}</span>
-            </p>
-            <p className="meta-row">
-              <span className="meta-label">Anno:</span>
-              <span className="meta-value">{movie.release_year}</span>
-            </p>
-            <p className="meta-row">
-              <span className="meta-label">Regia:</span>
-              <span className="meta-value">{movie.director}</span>
-            </p>
+          {Array.isArray(movie.reviews) && movie.reviews.length > 0 && (
+            <section className="reviews">
+              <h3 className="reviews-title">Recensioni</h3>
+              <ul className="reviews-list">
+                {movie.reviews.map((r) => (
+                  <li key={r.id} className="review-item">
+                    <div className="review-head">
+                      <span className="review-author">{r.name}</span>
+                      <span className="review-vote">({r.vote}/5)</span>
+                    </div>
+                    <p className="review-text">{r.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
-            {Array.isArray(movie.reviews) && movie.reviews.length > 0 && (
-              <section className="reviews">
-                <h3 className="reviews-title">Recensioni</h3>
-                <ul className="reviews-list">
-                  {movie.reviews.map((r) => (
-                    <li key={r.id} className="review-item">
-                      <div className="review-head">
-                        <span className="review-author">{r.name}</span>
-                        <span className="review-vote">({r.vote}/5)</span>
-                      </div>
-                      <p className="review-text">{r.text}</p>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+          {/* bottone toggle form */}
+          <div style={{ marginTop: 16 }}>
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => setShowForm((v) => !v)}
+              aria-expanded={showForm}
+              aria-controls="review-form-panel"
+            >
+              {showForm ? "Chiudi form recensione" : "Scrivi una recensione"}
+            </button>
+          </div>
 
-            {/* form per aggiungere una recensione */}
-            <div style={{ marginTop: 16 }}>
+          {/* pannello form visibile solo se showForm è true */}
+          {showForm && (
+            <div
+              id="review-form-panel"
+              className="detail-card p-4"
+              style={{
+                marginTop: 12,
+                borderRadius: 12,
+              }}
+            >
               <ReviewForm movieId={id} reloadReviews={fetchMovie} />
             </div>
-          </div>
-        </div>
-
-        <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {/* --- nav prev/next ---*/}
-          <div className="nav-row">
-            <button
-              type="button"
-              className="btn nav-btn prev"
-              onClick={goPrevPage}
-              disabled={!totalMovies}
-            >
-              Precedente
-            </button>
-
-            {/* bottone home */}
-            <Link to="/" className="back-link">← Torna alla Home</Link>
-
-            <button
-              type="button"
-              className="btn nav-btn next"
-              onClick={goNextPage}
-              disabled={!totalMovies}
-            >
-              Successivo
-            </button>
-          </div>
+          )}
         </div>
       </div>
-    </>
-  );
+
+      <div style={{ marginTop: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {/* --- nav prev/next ---*/}
+        <div className="nav-row">
+          <button
+            type="button"
+            className="btn nav-btn prev"
+            onClick={goPrevPage}
+            disabled={!totalMovies}
+          >
+            Precedente
+          </button>
+
+          {/* bottone home */}
+          <Link to="/" className="back-link">← Torna alla Home</Link>
+
+          <button
+            type="button"
+            className="btn nav-btn next"
+            onClick={goNextPage}
+            disabled={!totalMovies}
+          >
+            Successivo
+          </button>
+        </div>
+      </div>
+    </div>
+  </>
+);
 };
 
 export default DetailMovie;
