@@ -131,7 +131,7 @@ return (
           )}
 
           {/* bottone toggle form */}
-          <div style={{ marginTop: 16 }}>
+          <div>
             <button
               type="button"
               className="btn btn-outline-secondary"
@@ -148,10 +148,6 @@ return (
             <div
               id="review-form-panel"
               className="detail-card p-4"
-              style={{
-                marginTop: 12,
-                borderRadius: 12,
-              }}
             >
               <ReviewForm movieId={id} reloadReviews={fetchMovie} />
             </div>

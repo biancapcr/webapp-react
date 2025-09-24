@@ -41,8 +41,8 @@ const handleSubmit = (e) => {
             placeholder="Nome"
             name="name"
             id="name"
-			value={formData.name}
-			onChange={setFieldValue}
+			      value={formData.name}
+			      onChange={setFieldValue}
           />
         </div>
         <div className="my-3">
@@ -53,17 +53,17 @@ const handleSubmit = (e) => {
             type="number"
             className="form-control"
             placeholder="Voto"
-			min="0"
-			max="5"
+			      min="0"
+			      max="5"
             name="vote"
             id="vote"
-			value={formData.vote}
-			onChange={setFieldValue}
+			     value={formData.vote}
+			     onChange={setFieldValue}
           />
         </div>
         <div className="my-3">
           <label htmlFor="" className="form-label">
-            Testo Recensione
+            Recensione
           </label>
           <textarea
             type="text"
@@ -72,8 +72,8 @@ const handleSubmit = (e) => {
             name="text"
             id="text"
             rows="4"
-			value={formData.text}
-			onChange={setFieldValue}/>
+			      value={formData.text}
+			      onChange={setFieldValue}/>
         </div>
 		<div className="my-3">
 			<button className="btn btn-secondary" type="submit">Salva</button>

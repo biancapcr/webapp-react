@@ -196,6 +196,12 @@ em {
 }
 
 /* recensioni */
+
+.text-light { 
+  margin-bottom: 10px;
+  margin-top: 10px; 
+}
+
 .reviews { 
   margin-top: 18px; 
 }
@@ -312,3 +318,86 @@ em {
 .to-home-btn { 
   margin-top: 1rem; 
 }
+
+/* bottone toggle form */
+.btn.btn-outline-secondary {
+  border: 1px solid #da07074d;
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: #e7ecf3;
+  background: transparent;
+  transition: background .2s ease, border-color .2s ease, transform .06s ease;
+}
+.btn.btn-outline-secondary:hover {
+  background: rgba(95, 17, 17, 0.744);
+  border-color: #2a3550;
+}
+
+/* pannello form */
+.detail-card .p-4 {
+  background: transparent;
+  animation: slideDown .18s ease-out;
+  width: 100%;
+    max-width: 560px;          
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-6px); 
+  }
+  to   { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* campi form */
+.form-label {
+  color: #e5ded6;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}
+.form-control {
+  background: #0b0d12;
+  border: 1px solid #232a3a;
+  color: #e7ecf3;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.form-control::placeholder { 
+  color: #667085; 
+}
+
+/* pulsante submit */
+.btn.btn-secondary {
+  background: transparent;
+  cursor: pointer;
+  border: 1px solid #da07074d;
+  margin-top: 8px;
+  color: #f2f1ec;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: transform .06s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.btn.btn-secondary:hover { 
+  box-shadow: 0 8px 24px rgba(255, 9, 9, 0.89); 
+}
+
+#review-form-panel .my-3 {
+  flex-direction: column;   
+  gap: 7px;                 
+}
+
+#review-form-panel .form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 10px;
+  margin: 0;                 
+}
+
+
