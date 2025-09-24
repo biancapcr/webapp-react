@@ -5,7 +5,7 @@ function Header() {
     <nav className="site-nav">
       <img
         className="site-nav__logo"
-        src="/public/img/film.gif"        
+        src="/img/film.gif"        
         alt="Logo"
       />
       <NavLink to="/" className="a">Bitflix</NavLink>

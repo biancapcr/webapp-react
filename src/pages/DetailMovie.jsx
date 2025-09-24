@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import StarRating from "../components/StarRating.jsx";
 import axios from "axios";
 import ReviewForm from "../components/ReviewForm.jsx";
+import { useLoader } from "../contexts/LoaderContext.jsx";
 
 const DetailMovie = () => {
   const { id } = useParams();
@@ -10,23 +11,33 @@ const DetailMovie = () => {
   const [movie, setMovie] = useState(null);
   const [totalMovies, setTotalMovies] = useState(0);
   const [showForm, setShowForm] = useState(false);
+  const { showLoader, hideLoader } = useLoader();
 
+// calcolo della media dei voti dalle recensioni (0 se assenti),
+//  arrotondata a mezze stelle; ricalcola solo quando cambia movie
   const avg = useMemo(() => {
     if (!movie?.reviews?.length) return 0;
     const sum = movie.reviews.reduce((acc, r) => acc + (Number(r.vote) || 0), 0);
     return Math.round((sum / movie.reviews.length) * 2) / 2;
   }, [movie]);
 
-  // funzione che recupera il film dal backend
-  const fetchMovie = () => {
-    axios
-      .get(`http://localhost:3000/movies/${id}`)
-      .then((resp) => setMovie(resp.data))
-      .catch((err) => console.error(err));
-  };
+  // funzione che recupera il film mostrando il loader, 
+  // aggiorna lo stato (con ~100ms di durata minima) e poi nasconde il loader
+  const fetchMovie = async () => {
+  showLoader();
+  try {
+    const resp = await axios.get(`http://localhost:3000/movies/${id}`);
+    setMovie(resp.data);
+    await new Promise(r => setTimeout(r, 100)); // 
+  } catch (e) {
+    console.error(e);
+  } finally {
+    hideLoader();
+  }
+};
 
   // esegue il fetch al mount e quando cambia l'id
-  useEffect(fetchMovie, [id]);
+  useEffect(() => { fetchMovie(); }, [id]);
 
   // utilizzo della lunghezza della lista per sapere qual è l'ultimo id
   useEffect(() => {
